@@ -1,13 +1,12 @@
 # Retail Customer Purchase Pattern Analysis
 
-This mini project analyzes retail customer purchase patterns using data analytics techniques, including exploratory data analysis (EDA) and market basket analysis with the Apriori algorithm.
+This mini project analyzes retail customer purchase patterns using exploratory data analysis and market basket analysis with the Apriori algorithm.
 
 ## Project Structure
 
-- `dataset/`: Contains the retail transaction dataset (CSV format).
-- `notebooks/`: Jupyter notebooks for the analysis.
-- `outputs/`: Generated outputs including charts and association rules.
-  - `charts/`: Saved visualization charts.
+- `dataset/`: Optional local dataset storage. If no local dataset is provided, the script downloads the sample dataset automatically.
+- `notebooks/`: Jupyter notebooks for additional analysis.
+- `outputs/`: Generated outputs including the association rules CSV.
 - `report/`: Project reports or summaries.
 
 ## Requirements
@@ -18,36 +17,52 @@ This mini project analyzes retail customer purchase patterns using data analytic
 ## Setup Instructions
 
 1. Clone or download the project.
-2. Install dependencies:
+2. Create and activate a Python virtual environment in the project folder.
+3. Install dependencies:
+   ```bash
+   python -m pip install -r requirements.txt
    ```
-   pip install -r requirements.txt
+4. Run the analysis script:
+   ```bash
+   python run_analysis.py
    ```
-3. Place the retail transaction dataset (CSV) in the `dataset/` folder. The dataset should include columns like InvoiceNo, StockCode, Description, Quantity, InvoiceDate, UnitPrice, CustomerID, Country.
-4. Open the Jupyter notebook in `notebooks/retail_analysis.ipynb`.
-5. Run the cells to perform the analysis.
 
-## Analysis Overview
+## Optional Usage
 
-1. **Data Loading and Cleaning**: Load CSV, remove nulls, filter valid transactions, standardize data.
-2. **Exploratory Data Analysis**: Summary statistics, top products, visualizations.
-3. **Market Basket Analysis**: Use Apriori to find frequent itemsets and association rules.
-4. **Visualizations**: Bar charts, heatmaps, scatter plots.
-5. **Outputs**: Save charts and rules to `outputs/`.
+- Load a local dataset file:
+  ```bash
+  python run_analysis.py --data dataset/Online\ Retail.xlsx
+  ```
+- Save charts to disk instead of showing them interactively:
+  ```bash
+  python run_analysis.py --save-charts
+  ```
+- Change the output directory:
+  ```bash
+  python run_analysis.py --output-dir outputs
+  ```
 
-## Dataset
+## Notes
 
-The project uses a sample online retail dataset. Ensure the CSV has the following columns:
-- InvoiceNo: Invoice number
-- StockCode: Product code
-- Description: Product description
-- Quantity: Quantity purchased
-- InvoiceDate: Date of transaction
-- UnitPrice: Price per unit
-- CustomerID: Customer identifier
-- Country: Country of customer
+- If `dataset/` is empty, the script will download the sample dataset from the official UCI repository.
+- Charts are displayed interactively by default; saved chart images are only produced when `--save-charts` is passed.
+- The script writes association rules to `outputs/association_rules.csv`.
+
+## Dataset Columns
+
+The dataset should contain these columns:
+- `InvoiceNo`
+- `StockCode`
+- `Description`
+- `Quantity`
+- `InvoiceDate`
+- `UnitPrice`
+- `CustomerID`
+- `Country`
 
 ## Results
 
-- Top-selling products identified.
-- Association rules with support, confidence, lift metrics.
-- Visual insights into purchase patterns.
+- Top-selling products by quantity.
+- Frequent itemsets from market basket analysis.
+- Association rules with support, confidence, and lift values.
+- Interactive visualizations for top products and rule quality.
